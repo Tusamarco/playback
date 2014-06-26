@@ -1,0 +1,10 @@
+./percona_playback/thread_pool
+./percona_playback/tcpdump
+./percona_playback/full_report
+./percona_playback/mysql_client
+./percona_playback/thread_per_connection
+./percona_playback/error_report
+./percona_playback/simple_report
+./percona_playback/libdrizzle_client
+./percona_playback/query_log
+./percona_playback/null_dbclient

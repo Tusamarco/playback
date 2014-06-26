@@ -1,0 +1,246 @@
+
+# always the current list, generated every build so keep this lean.
+# pandora-plugin.list: datestamp preserved list
+${srcdir}/config/pandora-plugin.list: .plugin.scan
+.plugin.scan:
+	@cd ${top_srcdir} && python config/pandora-plugin plugin-list
+
+# Plugins affect configure; so to prevent configure running twice in a tarball
+# build (once up front, once with the right list of plugins, we ship the
+# generated list of plugins and the housekeeping material for that list so it
+# is likewise not updated.
+EXTRA_DIST += 	config/pandora-plugin.am 	config/pandora-plugin.ac 	config/pandora-plugin 	config/pandora-plugin.ini
+
+
+# Seed the list of plugin LDADDS which plugins may extend.
+PANDORA_DYNAMIC_LDADDS=
+
+# plugin.stamp: graph dominator for creating all per pandora-plugin.ac/am
+# files. This is invoked when the code to generate such files has altered.
+${top_srcdir}/config/pandora-plugin.am: ${top_srcdir}/config/pandora-plugin.list ${top_srcdir}/config/pandora-plugin \
+	./percona_playback/error_report/plugin.ini \
+	./percona_playback/full_report/plugin.ini \
+	./percona_playback/libdrizzle_client/plugin.ini \
+	./percona_playback/mysql_client/plugin.ini \
+	./percona_playback/null_dbclient/plugin.ini \
+	./percona_playback/query_log/plugin.ini \
+	./percona_playback/simple_report/plugin.ini \
+	./percona_playback/tcpdump/plugin.ini \
+	./percona_playback/thread_per_connection/plugin.ini \
+	./percona_playback/thread_pool/plugin.ini 
+	cd ${top_srcdir} && python config/pandora-plugin write
+
+EXTRA_DIST += percona_playback/error_report/plugin.ini
+
+# Prevent errors when a plugin dir is removed
+percona_playback/error_report/plugin.ini:
+
+
+percona_playback_error_report_dir=${top_srcdir}/percona_playback/error_report
+EXTRA_DIST += percona_playback/error_report/plugin.ini
+if BUILD_ERROR_REPORT_PLUGIN
+  noinst_LTLIBRARIES+=percona_playback/liberror_report_module.la
+  percona_playback_liberror_report_module_la_LIBADD=
+  percona_playback_liberror_report_module_la_DEPENDENCIES=
+  percona_playback_liberror_report_module_la_LDFLAGS=$(AM_LDFLAGS)  $(GCOV_LIBS)
+  percona_playback_liberror_report_module_la_CPPFLAGS=$(AM_CPPFLAGS) -DPANDORA_MODULE_NAME=error_report -DPANDORA_MODULE_AUTHOR='""' -DPANDORA_MODULE_TITLE='"Error Reporter"' -DPANDORA_MODULE_VERSION='"0.1"' -DPANDORA_MODULE_LICENSE=PLUGIN_LICENSE_GPL -DPANDORA_MODULE_DEPENDENCIES='""'  
+  percona_playback_liberror_report_module_la_CXXFLAGS=$(AM_CXXFLAGS)  -DBUILDING_PERCONA_PLAYBACK
+  percona_playback_liberror_report_module_la_CFLAGS=$(AM_CFLAGS)  
+  percona_playback_liberror_report_module_la_SOURCES= percona_playback/error_report/error_report.cc
+  check_PROGRAMS += 
+  PANDORA_DYNAMIC_LDADDS+=${top_builddir}/percona_playback/liberror_report_module.la
+endif
+
+EXTRA_DIST += percona_playback/full_report/plugin.ini
+
+# Prevent errors when a plugin dir is removed
+percona_playback/full_report/plugin.ini:
+
+
+percona_playback_full_report_dir=${top_srcdir}/percona_playback/full_report
+EXTRA_DIST += percona_playback/full_report/plugin.ini
+if BUILD_FULL_REPORT_PLUGIN
+  noinst_LTLIBRARIES+=percona_playback/libfull_report_module.la
+  percona_playback_libfull_report_module_la_LIBADD=
+  percona_playback_libfull_report_module_la_DEPENDENCIES=
+  percona_playback_libfull_report_module_la_LDFLAGS=$(AM_LDFLAGS)  $(GCOV_LIBS)
+  percona_playback_libfull_report_module_la_CPPFLAGS=$(AM_CPPFLAGS) -DPANDORA_MODULE_NAME=full_report -DPANDORA_MODULE_AUTHOR='""' -DPANDORA_MODULE_TITLE='"Full Reporter"' -DPANDORA_MODULE_VERSION='"0.1"' -DPANDORA_MODULE_LICENSE=PLUGIN_LICENSE_GPL -DPANDORA_MODULE_DEPENDENCIES='""'  
+  percona_playback_libfull_report_module_la_CXXFLAGS=$(AM_CXXFLAGS)  -DBUILDING_PERCONA_PLAYBACK
+  percona_playback_libfull_report_module_la_CFLAGS=$(AM_CFLAGS)  
+  percona_playback_libfull_report_module_la_SOURCES= percona_playback/full_report/full_report.cc
+  check_PROGRAMS += 
+  PANDORA_DYNAMIC_LDADDS+=${top_builddir}/percona_playback/libfull_report_module.la
+endif
+
+EXTRA_DIST += percona_playback/libdrizzle_client/plugin.ini
+
+# Prevent errors when a plugin dir is removed
+percona_playback/libdrizzle_client/plugin.ini:
+
+
+percona_playback_libdrizzle_client_dir=${top_srcdir}/percona_playback/libdrizzle_client
+EXTRA_DIST += percona_playback/libdrizzle_client/plugin.ini
+if BUILD_LIBDRIZZLE_CLIENT_PLUGIN
+  noinst_LTLIBRARIES+=percona_playback/liblibdrizzle_client_module.la
+  percona_playback_liblibdrizzle_client_module_la_LIBADD=
+  percona_playback_liblibdrizzle_client_module_la_DEPENDENCIES=
+  percona_playback_liblibdrizzle_client_module_la_LDFLAGS=$(AM_LDFLAGS)  $(GCOV_LIBS)
+  percona_playback_liblibdrizzle_client_module_la_CPPFLAGS=$(AM_CPPFLAGS) -DPANDORA_MODULE_NAME=libdrizzle_client -DPANDORA_MODULE_AUTHOR='""' -DPANDORA_MODULE_TITLE='"libdrizzle Client"' -DPANDORA_MODULE_VERSION='"0.1"' -DPANDORA_MODULE_LICENSE=PLUGIN_LICENSE_GPL -DPANDORA_MODULE_DEPENDENCIES='""'  
+  percona_playback_liblibdrizzle_client_module_la_CXXFLAGS=$(AM_CXXFLAGS)  -DBUILDING_PERCONA_PLAYBACK
+  percona_playback_liblibdrizzle_client_module_la_CFLAGS=$(AM_CFLAGS)  
+  percona_playback_liblibdrizzle_client_module_la_SOURCES= percona_playback/libdrizzle_client/libdrizzle_client.cc
+  check_PROGRAMS += 
+  PANDORA_DYNAMIC_LDADDS+=${top_builddir}/percona_playback/liblibdrizzle_client_module.la
+endif
+
+EXTRA_DIST += percona_playback/mysql_client/plugin.ini
+
+# Prevent errors when a plugin dir is removed
+percona_playback/mysql_client/plugin.ini:
+
+noinst_HEADERS +=  percona_playback/mysql_client/mysql_client.h
+
+percona_playback_mysql_client_dir=${top_srcdir}/percona_playback/mysql_client
+EXTRA_DIST += percona_playback/mysql_client/plugin.ini
+if BUILD_MYSQL_CLIENT_PLUGIN
+  noinst_LTLIBRARIES+=percona_playback/libmysql_client_module.la
+  percona_playback_libmysql_client_module_la_LIBADD=
+  percona_playback_libmysql_client_module_la_DEPENDENCIES=
+  percona_playback_libmysql_client_module_la_LDFLAGS=$(AM_LDFLAGS) ${MYSQL_LIBS} ${LD_FLAGS} $(GCOV_LIBS)
+  percona_playback_libmysql_client_module_la_CPPFLAGS=$(AM_CPPFLAGS) -DPANDORA_MODULE_NAME=mysql_client -DPANDORA_MODULE_AUTHOR='""' -DPANDORA_MODULE_TITLE='"MySQL Client"' -DPANDORA_MODULE_VERSION='"0.1"' -DPANDORA_MODULE_LICENSE=PLUGIN_LICENSE_GPL -DPANDORA_MODULE_DEPENDENCIES='""' ${MYSQL_INCLUDES} ${CPPFLAGS} 
+  percona_playback_libmysql_client_module_la_CXXFLAGS=$(AM_CXXFLAGS)  -DBUILDING_PERCONA_PLAYBACK
+  percona_playback_libmysql_client_module_la_CFLAGS=$(AM_CFLAGS)  
+  percona_playback_libmysql_client_module_la_SOURCES= percona_playback/mysql_client/mysql_client.cc
+  check_PROGRAMS += 
+  PANDORA_DYNAMIC_LDADDS+=${top_builddir}/percona_playback/libmysql_client_module.la
+endif
+
+EXTRA_DIST += percona_playback/null_dbclient/plugin.ini
+
+# Prevent errors when a plugin dir is removed
+percona_playback/null_dbclient/plugin.ini:
+
+
+percona_playback_null_dbclient_dir=${top_srcdir}/percona_playback/null_dbclient
+EXTRA_DIST += percona_playback/null_dbclient/plugin.ini
+if BUILD_NULL_DBCLIENT_PLUGIN
+  noinst_LTLIBRARIES+=percona_playback/libnull_dbclient_module.la
+  percona_playback_libnull_dbclient_module_la_LIBADD=
+  percona_playback_libnull_dbclient_module_la_DEPENDENCIES=
+  percona_playback_libnull_dbclient_module_la_LDFLAGS=$(AM_LDFLAGS)  $(GCOV_LIBS)
+  percona_playback_libnull_dbclient_module_la_CPPFLAGS=$(AM_CPPFLAGS) -DPANDORA_MODULE_NAME=null_dbclient -DPANDORA_MODULE_AUTHOR='""' -DPANDORA_MODULE_TITLE='"NULL DB Client"' -DPANDORA_MODULE_VERSION='"0.1"' -DPANDORA_MODULE_LICENSE=PLUGIN_LICENSE_GPL -DPANDORA_MODULE_DEPENDENCIES='""'  
+  percona_playback_libnull_dbclient_module_la_CXXFLAGS=$(AM_CXXFLAGS)  -DBUILDING_PERCONA_PLAYBACK
+  percona_playback_libnull_dbclient_module_la_CFLAGS=$(AM_CFLAGS)  
+  percona_playback_libnull_dbclient_module_la_SOURCES= percona_playback/null_dbclient/null_dbclient.cc
+  check_PROGRAMS += 
+  PANDORA_DYNAMIC_LDADDS+=${top_builddir}/percona_playback/libnull_dbclient_module.la
+endif
+
+EXTRA_DIST += percona_playback/query_log/plugin.ini
+
+# Prevent errors when a plugin dir is removed
+percona_playback/query_log/plugin.ini:
+
+noinst_HEADERS +=  percona_playback/query_log/query_log.h
+EXTRA_DIST += ${top_srcdir}/percona_playback/query_log/docs/*.rst
+
+percona_playback_query_log_dir=${top_srcdir}/percona_playback/query_log
+EXTRA_DIST += percona_playback/query_log/plugin.ini
+if BUILD_QUERY_LOG_PLUGIN
+  noinst_LTLIBRARIES+=percona_playback/libquery_log_module.la
+  percona_playback_libquery_log_module_la_LIBADD=
+  percona_playback_libquery_log_module_la_DEPENDENCIES=
+  percona_playback_libquery_log_module_la_LDFLAGS=$(AM_LDFLAGS) ${LTLIBTBB} $(GCOV_LIBS)
+  percona_playback_libquery_log_module_la_CPPFLAGS=$(AM_CPPFLAGS) -DPANDORA_MODULE_NAME=query_log -DPANDORA_MODULE_AUTHOR='""' -DPANDORA_MODULE_TITLE='"Query Log Parser"' -DPANDORA_MODULE_VERSION='"0.1"' -DPANDORA_MODULE_LICENSE=PLUGIN_LICENSE_GPL -DPANDORA_MODULE_DEPENDENCIES='""'  
+  percona_playback_libquery_log_module_la_CXXFLAGS=$(AM_CXXFLAGS)  -DBUILDING_PERCONA_PLAYBACK
+  percona_playback_libquery_log_module_la_CFLAGS=$(AM_CFLAGS)  
+  percona_playback_libquery_log_module_la_SOURCES= percona_playback/query_log/query_log.cc
+  check_PROGRAMS += 
+  PANDORA_DYNAMIC_LDADDS+=${top_builddir}/percona_playback/libquery_log_module.la
+endif
+
+EXTRA_DIST += percona_playback/simple_report/plugin.ini
+
+# Prevent errors when a plugin dir is removed
+percona_playback/simple_report/plugin.ini:
+
+
+percona_playback_simple_report_dir=${top_srcdir}/percona_playback/simple_report
+EXTRA_DIST += percona_playback/simple_report/plugin.ini
+if BUILD_SIMPLE_REPORT_PLUGIN
+  noinst_LTLIBRARIES+=percona_playback/libsimple_report_module.la
+  percona_playback_libsimple_report_module_la_LIBADD=
+  percona_playback_libsimple_report_module_la_DEPENDENCIES=
+  percona_playback_libsimple_report_module_la_LDFLAGS=$(AM_LDFLAGS)  $(GCOV_LIBS)
+  percona_playback_libsimple_report_module_la_CPPFLAGS=$(AM_CPPFLAGS) -DPANDORA_MODULE_NAME=simple_report -DPANDORA_MODULE_AUTHOR='""' -DPANDORA_MODULE_TITLE='"Simple Reporter"' -DPANDORA_MODULE_VERSION='"0.1"' -DPANDORA_MODULE_LICENSE=PLUGIN_LICENSE_GPL -DPANDORA_MODULE_DEPENDENCIES='""'  
+  percona_playback_libsimple_report_module_la_CXXFLAGS=$(AM_CXXFLAGS)  -DBUILDING_PERCONA_PLAYBACK
+  percona_playback_libsimple_report_module_la_CFLAGS=$(AM_CFLAGS)  
+  percona_playback_libsimple_report_module_la_SOURCES= percona_playback/simple_report/simple_report.cc
+  check_PROGRAMS += 
+  PANDORA_DYNAMIC_LDADDS+=${top_builddir}/percona_playback/libsimple_report_module.la
+endif
+
+EXTRA_DIST += percona_playback/tcpdump/plugin.ini
+
+# Prevent errors when a plugin dir is removed
+percona_playback/tcpdump/plugin.ini:
+
+noinst_HEADERS +=  percona_playback/tcpdump/tcpdump.h percona_playback/tcpdump/sniff_headers.h percona_playback/tcpdump/connection_state.h percona_playback/tcpdump/pcap_packets_parser.h percona_playback/tcpdump/tcpdump_query_entries.h percona_playback/tcpdump/tcpdump_mysql_parser_stats.h
+EXTRA_DIST += ${top_srcdir}/percona_playback/tcpdump/docs/*.rst
+
+percona_playback_tcpdump_dir=${top_srcdir}/percona_playback/tcpdump
+EXTRA_DIST += percona_playback/tcpdump/plugin.ini
+if BUILD_TCPDUMP_PLUGIN
+  noinst_LTLIBRARIES+=percona_playback/libtcpdump_module.la
+  percona_playback_libtcpdump_module_la_LIBADD=
+  percona_playback_libtcpdump_module_la_DEPENDENCIES=
+  percona_playback_libtcpdump_module_la_LDFLAGS=$(AM_LDFLAGS) ${PCAP_LIBS} ${LTLIBDRIZZLE} ${LDFLAGS} $(GCOV_LIBS)
+  percona_playback_libtcpdump_module_la_CPPFLAGS=$(AM_CPPFLAGS) -DPANDORA_MODULE_NAME=tcpdump -DPANDORA_MODULE_AUTHOR='""' -DPANDORA_MODULE_TITLE='"Tcpdump Plugin"' -DPANDORA_MODULE_VERSION='"0.1"' -DPANDORA_MODULE_LICENSE=PLUGIN_LICENSE_GPL -DPANDORA_MODULE_DEPENDENCIES='""' ${PCAP_INCLUDES} ${CPPFLAGS} 
+  percona_playback_libtcpdump_module_la_CXXFLAGS=$(AM_CXXFLAGS)  -DBUILDING_PERCONA_PLAYBACK
+  percona_playback_libtcpdump_module_la_CFLAGS=$(AM_CFLAGS)  
+  percona_playback_libtcpdump_module_la_SOURCES= percona_playback/tcpdump/tcpdump.cc percona_playback/tcpdump/connection_state.cc percona_playback/tcpdump/pcap_packets_parser.cc percona_playback/tcpdump/tcpdump_query_entries.cc
+  check_PROGRAMS += 
+  PANDORA_DYNAMIC_LDADDS+=${top_builddir}/percona_playback/libtcpdump_module.la
+endif
+
+EXTRA_DIST += percona_playback/thread_per_connection/plugin.ini
+
+# Prevent errors when a plugin dir is removed
+percona_playback/thread_per_connection/plugin.ini:
+
+
+percona_playback_thread_per_connection_dir=${top_srcdir}/percona_playback/thread_per_connection
+EXTRA_DIST += percona_playback/thread_per_connection/plugin.ini
+if BUILD_THREAD_PER_CONNECTION_PLUGIN
+  noinst_LTLIBRARIES+=percona_playback/libthread_per_connection_module.la
+  percona_playback_libthread_per_connection_module_la_LIBADD=
+  percona_playback_libthread_per_connection_module_la_DEPENDENCIES=
+  percona_playback_libthread_per_connection_module_la_LDFLAGS=$(AM_LDFLAGS)  $(GCOV_LIBS)
+  percona_playback_libthread_per_connection_module_la_CPPFLAGS=$(AM_CPPFLAGS) -DPANDORA_MODULE_NAME=thread_per_connection -DPANDORA_MODULE_AUTHOR='""' -DPANDORA_MODULE_TITLE='"Thread-per-connection dispatcher plugin"' -DPANDORA_MODULE_VERSION='"0.1"' -DPANDORA_MODULE_LICENSE=PLUGIN_LICENSE_GPL -DPANDORA_MODULE_DEPENDENCIES='""'  
+  percona_playback_libthread_per_connection_module_la_CXXFLAGS=$(AM_CXXFLAGS)  -DBUILDING_PERCONA_PLAYBACK
+  percona_playback_libthread_per_connection_module_la_CFLAGS=$(AM_CFLAGS)  
+  percona_playback_libthread_per_connection_module_la_SOURCES= percona_playback/thread_per_connection/thread_per_connection.cc
+  check_PROGRAMS += 
+  PANDORA_DYNAMIC_LDADDS+=${top_builddir}/percona_playback/libthread_per_connection_module.la
+endif
+
+EXTRA_DIST += percona_playback/thread_pool/plugin.ini
+
+# Prevent errors when a plugin dir is removed
+percona_playback/thread_pool/plugin.ini:
+
+
+percona_playback_thread_pool_dir=${top_srcdir}/percona_playback/thread_pool
+EXTRA_DIST += percona_playback/thread_pool/plugin.ini
+if BUILD_THREAD_POOL_PLUGIN
+  noinst_LTLIBRARIES+=percona_playback/libthread_pool_module.la
+  percona_playback_libthread_pool_module_la_LIBADD=
+  percona_playback_libthread_pool_module_la_DEPENDENCIES=
+  percona_playback_libthread_pool_module_la_LDFLAGS=$(AM_LDFLAGS)  $(GCOV_LIBS)
+  percona_playback_libthread_pool_module_la_CPPFLAGS=$(AM_CPPFLAGS) -DPANDORA_MODULE_NAME=thread_pool -DPANDORA_MODULE_AUTHOR='""' -DPANDORA_MODULE_TITLE='"Thread-pool dispatcher plugin"' -DPANDORA_MODULE_VERSION='"0.1"' -DPANDORA_MODULE_LICENSE=PLUGIN_LICENSE_GPL -DPANDORA_MODULE_DEPENDENCIES='""'  
+  percona_playback_libthread_pool_module_la_CXXFLAGS=$(AM_CXXFLAGS)  -DBUILDING_PERCONA_PLAYBACK
+  percona_playback_libthread_pool_module_la_CFLAGS=$(AM_CFLAGS)  
+  percona_playback_libthread_pool_module_la_SOURCES= percona_playback/thread_pool/thread_pool.cc
+  check_PROGRAMS += 
+  PANDORA_DYNAMIC_LDADDS+=${top_builddir}/percona_playback/libthread_pool_module.la
+endif

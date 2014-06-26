@@ -1,0 +1,26 @@
+[Buildset]
+BuildItems=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x01\x00\x00\x00 \x00p\x00e\x00r\x00c\x00o\x00n\x00a\x00-\x00p\x00l\x00a\x00y\x00b\x00a\x00c\x00k)
+
+[Launch]
+Launch Configurations=Launch Configuration 0
+
+[Launch][Launch Configuration 0]
+Configured Launch Modes=execute
+Configured Launchers=nativeAppLauncher
+Name=New Native Application Configuration
+Type=Native Application
+
+[Launch][Launch Configuration 0][Data]
+Arguments=--verbose=0 --loop=1 --thread-pool-threads-count=1 --mysql-host=192.168.0.110 --mysql-port=5510 --mysql-user=stress --mysql-password=tool --mysql-schema=test --db-plugin=libmysqlclient --query-log-file=/tmp/slow.log --dispatcher-plugin=thread-pool\s
+Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x01\x00\x00\x00 \x00p\x00e\x00r\x00c\x00o\x00n\x00a\x00-\x00p\x00l\x00a\x00y\x00b\x00a\x00c\x00k)
+Dependency Action=Build
+EnvironmentGroup=default
+Executable=file:///opt/percona-playback/bin2/bin/percona-playback
+External Terminal=konsole --noclose --workdir %workdir -e %exe
+Project Target=
+Use External Terminal=false
+Working Directory=file:///opt/percona-playback
+isExecutable=true
+
+[MakeBuilder]
+Number Of Jobs=1

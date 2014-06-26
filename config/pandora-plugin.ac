@@ -1,0 +1,450 @@
+dnl Generated file, run make to rebuild
+
+dnl Config for Error Reporter
+
+AC_ARG_WITH([error-report-plugin],[
+dnl indented wierd to make the help output correct
+AS_HELP_STRING([--with-error-report-plugin],[Build Error Reporter. @<:@default=yes@:>@])
+AS_HELP_STRING([--without-error-report-plugin],[Disable building Error Reporter])
+  ],[
+    with_error_report_plugin="$withval"
+    AS_IF([test "x$with_error_report_plugin" = "xyes"],[
+      requested_error_report_plugin="yes"
+    ],[
+      requested_error_report_plugin="no"
+    ])
+  ],[
+    with_error_report_plugin="yes"
+    requested_error_report_plugin="no"
+  ])
+AC_ARG_ENABLE([error-report-plugin],[
+dnl indented wierd to make the help output correct
+AS_HELP_STRING([--enable-error-report-plugin],[Enable loading Error Reporter by default. @<:@default=yes@:>@])
+AS_HELP_STRING([--disable-error-report-plugin],[Disable loading Error Reporter by default.])
+  ],
+  [enable_error_report_plugin="$enableval"],
+  [enable_error_report_plugin=yes])
+
+
+AM_CONDITIONAL([BUILD_ERROR_REPORT_PLUGIN],
+               [test "x${with_error_report_plugin}" = "xyes"])
+    
+AS_IF([test "x$with_error_report_plugin" = "xyes"],
+    [
+
+        AS_IF([test "x$enable_error_report_plugin" = "xyes"],[
+          pandora_builtin_load_list="error_report,${pandora_builtin_load_list}"
+          pandora_builtin_load_symbols_list="_percona_playback_error_report_plugin_,${pandora_builtin_load_symbols_list}"
+          PANDORA_PLUGIN_DEP_LIBS="${PANDORA_PLUGIN_DEP_LIBS} "
+        ])
+        pandora_builtin_list="error_report,${pandora_builtin_list}"
+        pandora_builtin_symbols_list="_percona_playback_error_report_plugin_,${pandora_builtin_symbols_list}"
+        pandora_plugin_libs="${pandora_plugin_libs} \${top_builddir}/percona_playback/liberror_report_module.la"
+          ])
+
+dnl Config for Full Reporter
+
+AC_ARG_WITH([full-report-plugin],[
+dnl indented wierd to make the help output correct
+AS_HELP_STRING([--with-full-report-plugin],[Build Full Reporter. @<:@default=yes@:>@])
+AS_HELP_STRING([--without-full-report-plugin],[Disable building Full Reporter])
+  ],[
+    with_full_report_plugin="$withval"
+    AS_IF([test "x$with_full_report_plugin" = "xyes"],[
+      requested_full_report_plugin="yes"
+    ],[
+      requested_full_report_plugin="no"
+    ])
+  ],[
+    with_full_report_plugin="yes"
+    requested_full_report_plugin="no"
+  ])
+AC_ARG_ENABLE([full-report-plugin],[
+dnl indented wierd to make the help output correct
+AS_HELP_STRING([--enable-full-report-plugin],[Enable loading Full Reporter by default. @<:@default=yes@:>@])
+AS_HELP_STRING([--disable-full-report-plugin],[Disable loading Full Reporter by default.])
+  ],
+  [enable_full_report_plugin="$enableval"],
+  [enable_full_report_plugin=yes])
+
+
+AM_CONDITIONAL([BUILD_FULL_REPORT_PLUGIN],
+               [test "x${with_full_report_plugin}" = "xyes"])
+    
+AS_IF([test "x$with_full_report_plugin" = "xyes"],
+    [
+
+        AS_IF([test "x$enable_full_report_plugin" = "xyes"],[
+          pandora_builtin_load_list="full_report,${pandora_builtin_load_list}"
+          pandora_builtin_load_symbols_list="_percona_playback_full_report_plugin_,${pandora_builtin_load_symbols_list}"
+          PANDORA_PLUGIN_DEP_LIBS="${PANDORA_PLUGIN_DEP_LIBS} "
+        ])
+        pandora_builtin_list="full_report,${pandora_builtin_list}"
+        pandora_builtin_symbols_list="_percona_playback_full_report_plugin_,${pandora_builtin_symbols_list}"
+        pandora_plugin_libs="${pandora_plugin_libs} \${top_builddir}/percona_playback/libfull_report_module.la"
+          ])
+
+dnl Config for libdrizzle Client
+
+AC_ARG_WITH([libdrizzle-client-plugin],[
+dnl indented wierd to make the help output correct
+AS_HELP_STRING([--with-libdrizzle-client-plugin],[Build libdrizzle Client. @<:@default=yes@:>@])
+AS_HELP_STRING([--without-libdrizzle-client-plugin],[Disable building libdrizzle Client])
+  ],[
+    with_libdrizzle_client_plugin="$withval"
+    AS_IF([test "x$with_libdrizzle_client_plugin" = "xyes"],[
+      requested_libdrizzle_client_plugin="yes"
+    ],[
+      requested_libdrizzle_client_plugin="no"
+    ])
+  ],[
+    with_libdrizzle_client_plugin="yes"
+    requested_libdrizzle_client_plugin="no"
+  ])
+AC_ARG_ENABLE([libdrizzle-client-plugin],[
+dnl indented wierd to make the help output correct
+AS_HELP_STRING([--enable-libdrizzle-client-plugin],[Enable loading libdrizzle Client by default. @<:@default=yes@:>@])
+AS_HELP_STRING([--disable-libdrizzle-client-plugin],[Disable loading libdrizzle Client by default.])
+  ],
+  [enable_libdrizzle_client_plugin="$enableval"],
+  [enable_libdrizzle_client_plugin=yes])
+
+
+AS_IF([test "x${with_libdrizzle_client_plugin}" = "xyes" -a "x${ac_cv_libdrizzle}" != "xno"],
+      [], dnl build_conditional can only negate
+      [
+        AS_IF([test "x${requested_libdrizzle_client_plugin}" = "xyes"],
+              [AC_MSG_ERROR([Plugin libdrizzle_client was explicitly requested, yet failed build dependency checks. Aborting!])])
+        with_libdrizzle_client_plugin=no
+      ])
+
+
+AM_CONDITIONAL([BUILD_LIBDRIZZLE_CLIENT_PLUGIN],
+               [test "x${with_libdrizzle_client_plugin}" = "xyes" -a "x${ac_cv_libdrizzle}" != "xno"])
+    
+AS_IF([test "x$with_libdrizzle_client_plugin" = "xyes"],
+    [
+
+        AS_IF([test "x$enable_libdrizzle_client_plugin" = "xyes"],[
+          pandora_builtin_load_list="libdrizzle_client,${pandora_builtin_load_list}"
+          pandora_builtin_load_symbols_list="_percona_playback_libdrizzle_client_plugin_,${pandora_builtin_load_symbols_list}"
+          PANDORA_PLUGIN_DEP_LIBS="${PANDORA_PLUGIN_DEP_LIBS} "
+        ])
+        pandora_builtin_list="libdrizzle_client,${pandora_builtin_list}"
+        pandora_builtin_symbols_list="_percona_playback_libdrizzle_client_plugin_,${pandora_builtin_symbols_list}"
+        pandora_plugin_libs="${pandora_plugin_libs} \${top_builddir}/percona_playback/liblibdrizzle_client_module.la"
+          ])
+
+dnl Config for MySQL Client
+
+AC_ARG_WITH([mysql-client-plugin],[
+dnl indented wierd to make the help output correct
+AS_HELP_STRING([--with-mysql-client-plugin],[Build MySQL Client. @<:@default=yes@:>@])
+AS_HELP_STRING([--without-mysql-client-plugin],[Disable building MySQL Client])
+  ],[
+    with_mysql_client_plugin="$withval"
+    AS_IF([test "x$with_mysql_client_plugin" = "xyes"],[
+      requested_mysql_client_plugin="yes"
+    ],[
+      requested_mysql_client_plugin="no"
+    ])
+  ],[
+    with_mysql_client_plugin="yes"
+    requested_mysql_client_plugin="no"
+  ])
+AC_ARG_ENABLE([mysql-client-plugin],[
+dnl indented wierd to make the help output correct
+AS_HELP_STRING([--enable-mysql-client-plugin],[Enable loading MySQL Client by default. @<:@default=yes@:>@])
+AS_HELP_STRING([--disable-mysql-client-plugin],[Disable loading MySQL Client by default.])
+  ],
+  [enable_mysql_client_plugin="$enableval"],
+  [enable_mysql_client_plugin=yes])
+
+m4_sinclude([percona_playback/mysql_client/plugin.ac])
+
+AS_IF([test "x${with_mysql_client_plugin}" = "xyes" -a "x${pandora_cv_mysql_base}${ac_cv_prog_MYSQL_CONFIG}" != "x"],
+      [], dnl build_conditional can only negate
+      [
+        AS_IF([test "x${requested_mysql_client_plugin}" = "xyes"],
+              [AC_MSG_ERROR([Plugin mysql_client was explicitly requested, yet failed build dependency checks. Aborting!])])
+        with_mysql_client_plugin=no
+      ])
+
+
+AM_CONDITIONAL([BUILD_MYSQL_CLIENT_PLUGIN],
+               [test "x${with_mysql_client_plugin}" = "xyes" -a "x${pandora_cv_mysql_base}${ac_cv_prog_MYSQL_CONFIG}" != "x"])
+    
+AS_IF([test "x$with_mysql_client_plugin" = "xyes"],
+    [
+
+        AS_IF([test "x$enable_mysql_client_plugin" = "xyes"],[
+          pandora_builtin_load_list="mysql_client,${pandora_builtin_load_list}"
+          pandora_builtin_load_symbols_list="_percona_playback_mysql_client_plugin_,${pandora_builtin_load_symbols_list}"
+          PANDORA_PLUGIN_DEP_LIBS="${PANDORA_PLUGIN_DEP_LIBS} "
+        ])
+        pandora_builtin_list="mysql_client,${pandora_builtin_list}"
+        pandora_builtin_symbols_list="_percona_playback_mysql_client_plugin_,${pandora_builtin_symbols_list}"
+        pandora_plugin_libs="${pandora_plugin_libs} \${top_builddir}/percona_playback/libmysql_client_module.la"
+          ])
+
+dnl Config for NULL DB Client
+
+AC_ARG_WITH([null-dbclient-plugin],[
+dnl indented wierd to make the help output correct
+AS_HELP_STRING([--with-null-dbclient-plugin],[Build NULL DB Client. @<:@default=yes@:>@])
+AS_HELP_STRING([--without-null-dbclient-plugin],[Disable building NULL DB Client])
+  ],[
+    with_null_dbclient_plugin="$withval"
+    AS_IF([test "x$with_null_dbclient_plugin" = "xyes"],[
+      requested_null_dbclient_plugin="yes"
+    ],[
+      requested_null_dbclient_plugin="no"
+    ])
+  ],[
+    with_null_dbclient_plugin="yes"
+    requested_null_dbclient_plugin="no"
+  ])
+AC_ARG_ENABLE([null-dbclient-plugin],[
+dnl indented wierd to make the help output correct
+AS_HELP_STRING([--enable-null-dbclient-plugin],[Enable loading NULL DB Client by default. @<:@default=yes@:>@])
+AS_HELP_STRING([--disable-null-dbclient-plugin],[Disable loading NULL DB Client by default.])
+  ],
+  [enable_null_dbclient_plugin="$enableval"],
+  [enable_null_dbclient_plugin=yes])
+
+
+AM_CONDITIONAL([BUILD_NULL_DBCLIENT_PLUGIN],
+               [test "x${with_null_dbclient_plugin}" = "xyes"])
+    
+AS_IF([test "x$with_null_dbclient_plugin" = "xyes"],
+    [
+
+        AS_IF([test "x$enable_null_dbclient_plugin" = "xyes"],[
+          pandora_builtin_load_list="null_dbclient,${pandora_builtin_load_list}"
+          pandora_builtin_load_symbols_list="_percona_playback_null_dbclient_plugin_,${pandora_builtin_load_symbols_list}"
+          PANDORA_PLUGIN_DEP_LIBS="${PANDORA_PLUGIN_DEP_LIBS} "
+        ])
+        pandora_builtin_list="null_dbclient,${pandora_builtin_list}"
+        pandora_builtin_symbols_list="_percona_playback_null_dbclient_plugin_,${pandora_builtin_symbols_list}"
+        pandora_plugin_libs="${pandora_plugin_libs} \${top_builddir}/percona_playback/libnull_dbclient_module.la"
+          ])
+
+dnl Config for Query Log Parser
+
+AC_ARG_WITH([query-log-plugin],[
+dnl indented wierd to make the help output correct
+AS_HELP_STRING([--with-query-log-plugin],[Build Query Log Parser. @<:@default=yes@:>@])
+AS_HELP_STRING([--without-query-log-plugin],[Disable building Query Log Parser])
+  ],[
+    with_query_log_plugin="$withval"
+    AS_IF([test "x$with_query_log_plugin" = "xyes"],[
+      requested_query_log_plugin="yes"
+    ],[
+      requested_query_log_plugin="no"
+    ])
+  ],[
+    with_query_log_plugin="yes"
+    requested_query_log_plugin="no"
+  ])
+AC_ARG_ENABLE([query-log-plugin],[
+dnl indented wierd to make the help output correct
+AS_HELP_STRING([--enable-query-log-plugin],[Enable loading Query Log Parser by default. @<:@default=yes@:>@])
+AS_HELP_STRING([--disable-query-log-plugin],[Disable loading Query Log Parser by default.])
+  ],
+  [enable_query_log_plugin="$enableval"],
+  [enable_query_log_plugin=yes])
+
+
+AS_IF([test "x${with_query_log_plugin}" = "xyes" -a "${ac_cv_libtbb}" = "yes"],
+      [], dnl build_conditional can only negate
+      [
+        AS_IF([test "x${requested_query_log_plugin}" = "xyes"],
+              [AC_MSG_ERROR([Plugin query_log was explicitly requested, yet failed build dependency checks. Aborting!])])
+        with_query_log_plugin=no
+      ])
+
+
+AM_CONDITIONAL([BUILD_QUERY_LOG_PLUGIN],
+               [test "x${with_query_log_plugin}" = "xyes" -a "${ac_cv_libtbb}" = "yes"])
+    
+AS_IF([test "x$with_query_log_plugin" = "xyes"],
+    [
+
+        AS_IF([test "x$enable_query_log_plugin" = "xyes"],[
+          pandora_builtin_load_list="query_log,${pandora_builtin_load_list}"
+          pandora_builtin_load_symbols_list="_percona_playback_query_log_plugin_,${pandora_builtin_load_symbols_list}"
+          PANDORA_PLUGIN_DEP_LIBS="${PANDORA_PLUGIN_DEP_LIBS} "
+        ])
+        pandora_builtin_list="query_log,${pandora_builtin_list}"
+        pandora_builtin_symbols_list="_percona_playback_query_log_plugin_,${pandora_builtin_symbols_list}"
+        pandora_plugin_libs="${pandora_plugin_libs} \${top_builddir}/percona_playback/libquery_log_module.la"
+          ])
+
+dnl Config for Simple Reporter
+
+AC_ARG_WITH([simple-report-plugin],[
+dnl indented wierd to make the help output correct
+AS_HELP_STRING([--with-simple-report-plugin],[Build Simple Reporter. @<:@default=yes@:>@])
+AS_HELP_STRING([--without-simple-report-plugin],[Disable building Simple Reporter])
+  ],[
+    with_simple_report_plugin="$withval"
+    AS_IF([test "x$with_simple_report_plugin" = "xyes"],[
+      requested_simple_report_plugin="yes"
+    ],[
+      requested_simple_report_plugin="no"
+    ])
+  ],[
+    with_simple_report_plugin="yes"
+    requested_simple_report_plugin="no"
+  ])
+AC_ARG_ENABLE([simple-report-plugin],[
+dnl indented wierd to make the help output correct
+AS_HELP_STRING([--enable-simple-report-plugin],[Enable loading Simple Reporter by default. @<:@default=yes@:>@])
+AS_HELP_STRING([--disable-simple-report-plugin],[Disable loading Simple Reporter by default.])
+  ],
+  [enable_simple_report_plugin="$enableval"],
+  [enable_simple_report_plugin=yes])
+
+
+AM_CONDITIONAL([BUILD_SIMPLE_REPORT_PLUGIN],
+               [test "x${with_simple_report_plugin}" = "xyes"])
+    
+AS_IF([test "x$with_simple_report_plugin" = "xyes"],
+    [
+
+        AS_IF([test "x$enable_simple_report_plugin" = "xyes"],[
+          pandora_builtin_load_list="simple_report,${pandora_builtin_load_list}"
+          pandora_builtin_load_symbols_list="_percona_playback_simple_report_plugin_,${pandora_builtin_load_symbols_list}"
+          PANDORA_PLUGIN_DEP_LIBS="${PANDORA_PLUGIN_DEP_LIBS} "
+        ])
+        pandora_builtin_list="simple_report,${pandora_builtin_list}"
+        pandora_builtin_symbols_list="_percona_playback_simple_report_plugin_,${pandora_builtin_symbols_list}"
+        pandora_plugin_libs="${pandora_plugin_libs} \${top_builddir}/percona_playback/libsimple_report_module.la"
+          ])
+
+dnl Config for Tcpdump Plugin
+
+AC_ARG_WITH([tcpdump-plugin],[
+dnl indented wierd to make the help output correct
+AS_HELP_STRING([--with-tcpdump-plugin],[Build Tcpdump Plugin. @<:@default=yes@:>@])
+AS_HELP_STRING([--without-tcpdump-plugin],[Disable building Tcpdump Plugin])
+  ],[
+    with_tcpdump_plugin="$withval"
+    AS_IF([test "x$with_tcpdump_plugin" = "xyes"],[
+      requested_tcpdump_plugin="yes"
+    ],[
+      requested_tcpdump_plugin="no"
+    ])
+  ],[
+    with_tcpdump_plugin="yes"
+    requested_tcpdump_plugin="no"
+  ])
+AC_ARG_ENABLE([tcpdump-plugin],[
+dnl indented wierd to make the help output correct
+AS_HELP_STRING([--enable-tcpdump-plugin],[Enable loading Tcpdump Plugin by default. @<:@default=yes@:>@])
+AS_HELP_STRING([--disable-tcpdump-plugin],[Disable loading Tcpdump Plugin by default.])
+  ],
+  [enable_tcpdump_plugin="$enableval"],
+  [enable_tcpdump_plugin=yes])
+
+m4_sinclude([percona_playback/tcpdump/plugin.ac])
+
+AM_CONDITIONAL([BUILD_TCPDUMP_PLUGIN],
+               [test "x${with_tcpdump_plugin}" = "xyes"])
+    
+AS_IF([test "x$with_tcpdump_plugin" = "xyes"],
+    [
+
+        AS_IF([test "x$enable_tcpdump_plugin" = "xyes"],[
+          pandora_builtin_load_list="tcpdump,${pandora_builtin_load_list}"
+          pandora_builtin_load_symbols_list="_percona_playback_tcpdump_plugin_,${pandora_builtin_load_symbols_list}"
+          PANDORA_PLUGIN_DEP_LIBS="${PANDORA_PLUGIN_DEP_LIBS} "
+        ])
+        pandora_builtin_list="tcpdump,${pandora_builtin_list}"
+        pandora_builtin_symbols_list="_percona_playback_tcpdump_plugin_,${pandora_builtin_symbols_list}"
+        pandora_plugin_libs="${pandora_plugin_libs} \${top_builddir}/percona_playback/libtcpdump_module.la"
+          ])
+
+dnl Config for Thread-per-connection dispatcher plugin
+
+AC_ARG_WITH([thread-per-connection-plugin],[
+dnl indented wierd to make the help output correct
+AS_HELP_STRING([--with-thread-per-connection-plugin],[Build Thread-per-connection dispatcher plugin. @<:@default=yes@:>@])
+AS_HELP_STRING([--without-thread-per-connection-plugin],[Disable building Thread-per-connection dispatcher plugin])
+  ],[
+    with_thread_per_connection_plugin="$withval"
+    AS_IF([test "x$with_thread_per_connection_plugin" = "xyes"],[
+      requested_thread_per_connection_plugin="yes"
+    ],[
+      requested_thread_per_connection_plugin="no"
+    ])
+  ],[
+    with_thread_per_connection_plugin="yes"
+    requested_thread_per_connection_plugin="no"
+  ])
+AC_ARG_ENABLE([thread-per-connection-plugin],[
+dnl indented wierd to make the help output correct
+AS_HELP_STRING([--enable-thread-per-connection-plugin],[Enable loading Thread-per-connection dispatcher plugin by default. @<:@default=yes@:>@])
+AS_HELP_STRING([--disable-thread-per-connection-plugin],[Disable loading Thread-per-connection dispatcher plugin by default.])
+  ],
+  [enable_thread_per_connection_plugin="$enableval"],
+  [enable_thread_per_connection_plugin=yes])
+
+
+AM_CONDITIONAL([BUILD_THREAD_PER_CONNECTION_PLUGIN],
+               [test "x${with_thread_per_connection_plugin}" = "xyes"])
+    
+AS_IF([test "x$with_thread_per_connection_plugin" = "xyes"],
+    [
+
+        AS_IF([test "x$enable_thread_per_connection_plugin" = "xyes"],[
+          pandora_builtin_load_list="thread_per_connection,${pandora_builtin_load_list}"
+          pandora_builtin_load_symbols_list="_percona_playback_thread_per_connection_plugin_,${pandora_builtin_load_symbols_list}"
+          PANDORA_PLUGIN_DEP_LIBS="${PANDORA_PLUGIN_DEP_LIBS} "
+        ])
+        pandora_builtin_list="thread_per_connection,${pandora_builtin_list}"
+        pandora_builtin_symbols_list="_percona_playback_thread_per_connection_plugin_,${pandora_builtin_symbols_list}"
+        pandora_plugin_libs="${pandora_plugin_libs} \${top_builddir}/percona_playback/libthread_per_connection_module.la"
+          ])
+
+dnl Config for Thread-pool dispatcher plugin
+
+AC_ARG_WITH([thread-pool-plugin],[
+dnl indented wierd to make the help output correct
+AS_HELP_STRING([--with-thread-pool-plugin],[Build Thread-pool dispatcher plugin. @<:@default=yes@:>@])
+AS_HELP_STRING([--without-thread-pool-plugin],[Disable building Thread-pool dispatcher plugin])
+  ],[
+    with_thread_pool_plugin="$withval"
+    AS_IF([test "x$with_thread_pool_plugin" = "xyes"],[
+      requested_thread_pool_plugin="yes"
+    ],[
+      requested_thread_pool_plugin="no"
+    ])
+  ],[
+    with_thread_pool_plugin="yes"
+    requested_thread_pool_plugin="no"
+  ])
+AC_ARG_ENABLE([thread-pool-plugin],[
+dnl indented wierd to make the help output correct
+AS_HELP_STRING([--enable-thread-pool-plugin],[Enable loading Thread-pool dispatcher plugin by default. @<:@default=yes@:>@])
+AS_HELP_STRING([--disable-thread-pool-plugin],[Disable loading Thread-pool dispatcher plugin by default.])
+  ],
+  [enable_thread_pool_plugin="$enableval"],
+  [enable_thread_pool_plugin=yes])
+
+
+AM_CONDITIONAL([BUILD_THREAD_POOL_PLUGIN],
+               [test "x${with_thread_pool_plugin}" = "xyes"])
+    
+AS_IF([test "x$with_thread_pool_plugin" = "xyes"],
+    [
+
+        AS_IF([test "x$enable_thread_pool_plugin" = "xyes"],[
+          pandora_builtin_load_list="thread_pool,${pandora_builtin_load_list}"
+          pandora_builtin_load_symbols_list="_percona_playback_thread_pool_plugin_,${pandora_builtin_load_symbols_list}"
+          PANDORA_PLUGIN_DEP_LIBS="${PANDORA_PLUGIN_DEP_LIBS} "
+        ])
+        pandora_builtin_list="thread_pool,${pandora_builtin_list}"
+        pandora_builtin_symbols_list="_percona_playback_thread_pool_plugin_,${pandora_builtin_symbols_list}"
+        pandora_plugin_libs="${pandora_plugin_libs} \${top_builddir}/percona_playback/libthread_pool_module.la"
+          ])

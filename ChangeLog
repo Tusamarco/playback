@@ -1,0 +1,1295 @@
+2013-10-18  Jenkins Master  <jenkins@jenkins.percona.com>
+
+	Merge lp:~percona-core/percona-playback/release-0.7
+	http://jenkins.percona.com/job/merge-percona-playback-create-staging/2/
+
+2013-10-18  Stewart Smith  <stewart@flamingspork.com>
+
+	update release date again
+
+2013-10-08  Stewart Smith  <stewart@flamingspork.com>
+
+	update release date
+
+2013-10-08  Stewart Smith  <stewart@flamingspork.com>
+
+	merge 0.7 release fixes
+
+2013-10-07  Stewart Smith  <stewart@flamingspork.com>
+
+	don't run autoreconf during RPM build, we shouldn't need to rerun autoconf when building from source tarball
+
+2013-10-07  Stewart Smith  <stewart@flamingspork.com>
+
+	move to using boost.m4 rather than pandora boost to detect BOOST correctly
+
+2013-10-07  Stewart Smith  <stewart@flamingspork.com>
+
+	we have to explicitly state all depenedncies for AC_LIB_HAVE_LINKFLAGS
+
+2013-10-07  Stewart Smith  <stewart@flamingspork.com>
+
+	we need to unset ac_cv_libbost_thread (and _mt) before trying second check
+
+2013-10-07  Stewart Smith  <stewart@flamingspork.com>
+
+	check for boost_thread linking with boost-system and without boost-system
+
+2013-10-04  Stewart Smith  <stewart@flamingspork.com>
+
+	addd libboost-system-dev as build-dep for debian, as this can be the case
+
+2013-09-27  Stewart Smith  <stewart@flamingspork.com>
+
+	libdrizzle-dev can need libssl-dev for what we're doing... at least in Debian unstable
+
+2013-09-27  Stewart Smith  <stewart@flamingspork.com>
+
+	fix m4/pandora_have_libboost_thread.m4 to work with current Debian Unstable version of boost
+
+2013-09-03  Ignacio Nin  <ignacio.nin@percona.com>
+
+	Include po/Makefile.in.in in the distribution.
+
+2013-09-03  Ignacio Nin  <ignacio.nin@percona.com>
+
+	Remove gettext-related files and include gettext in configure.ac
+	
+	Since we build for different versions of platforms, some old, some new,
+	the gettext-related included files were starting to have issues with the
+	latest versions of autotools used to configure the program.
+	
+	Remove all gettext-related files and include AM_GNU_GETTEXT in configure,
+	also requiring on intltool to be installed.
+
+2013-09-03  Ignacio Nin  <ignacio.nin@percona.com>
+
+	Remove an empty conditional block from the drizzle detector, which caused
+	an error in configure execution.
+
+2013-09-02  Ignacio Nin  <ignacio.nin@percona.com>
+
+	Fix two print lines with syntax errors in config/pandora-plugin
+
+2013-09-02  Ignacio Nin  <ignacio.nin@percona.com>
+
+	Update versions in percona-playback.spec and debian/changelog to 0.7
+
+2013-08-13  Stewart Smith  <stewart@flamingspork.com>
+
+	add 0.7 release notes
+
+2013-10-08  Stewart Smith  <stewart@flamingspork.com>
+
+	merge documentation updates
+
+2013-10-08  Stewart Smith  <stewart@flamingspork.com>
+
+	add overview and limitations to documentation
+
+2013-10-08  Ovais Tariq  <ovais.tariq@percona.com>
+
+	Added documentation on limitations and known issues from Ovais
+
+2013-08-01  Hrvoje Matijakovic  <hrvoje.matijakovic@percona.com>
+
+	Merged lp:~hrvojem/percona-playback/tcpdump-iany-docs
+
+2013-08-01  Hrvoje Matijakovic  <hrvoje.matijakovic@percona.com>
+
+	- documented tcpdump "-i any" limitation
+
+2013-07-27  Stewart Smith  <stewart@flamingspork.com>
+
+	percona_playback/tcpdump/tcpdump_query_entries.cc needs config.h
+
+2013-07-27  Stewart Smith  <stewart@flamingspork.com>
+
+	tcpdump/pcap_packets_parser.cc needs config.h included first
+
+2013-07-27  Stewart Smith  <stewart@flamingspork.com>
+
+	config.h should be in .cc not in .h
+
+2013-07-27  Stewart Smith  <stewart@flamingspork.com>
+
+	need to include config.h for finding correct path to libdrizzle headers
+
+2013-07-26  Stewart Smith  <stewart@flamingspork.com>
+
+	libdrizzle_client.cc needs config.h to find correct path to libdrizzle includes
+
+2013-07-26  Stewart Smith  <stewart@flamingspork.com>
+
+	removed debian packaging patches
+
+2013-07-26  Stewart Smith  <stewart@flamingspork.com>
+
+	do proper detection of path of libdrizzle includes
+
+2013-07-26  Stewart Smith  <stewart@flamingspork.com>
+
+	fix libcloog-ppl-dev depedency for debian packaging
+
+2013-07-26  Stewart Smith  <stewart@flamingspork.com>
+
+	add a VERSION file to make dist
+
+2013-07-26  Stewart Smith  <stewart@flamingspork.com>
+
+	include REVNO file in make dist, indicating bzr revno that was built
+
+2013-07-26  Stewart Smith  <stewart@flamingspork.com>
+
+	move packaging to subdir, add to source tarball
+
+2013-07-26  Stewart Smith  <stewart@flamingspork.com>
+
+	debian packaging fixups: patch for libdrizzle includes, build-dep of python
+
+2013-07-26  Stewart Smith  <stewart@flamingspork.com>
+
+	debian source format should be 3.0 (quilt) and not native
+
+2013-07-26  Stewart Smith  <stewart@flamingspork.com>
+
+	add BSD license files, update debian packaging
+
+2013-07-26  Stewart Smith  <stewart@flamingspork.com>
+
+	bump version number to 0.7
+
+2013-07-26  Stewart Smith  <stewart@flamingspork.com>
+
+	update debian/copyright to machine readable format
+
+2013-06-07  jenkins@jenkins.percona.com
+
+	Merge lp:~percona-core/percona-playback/release-0.6
+
+2013-04-04  Ignacio Nin  <ignacio.nin@percona.com>
+
+	Add a dependency to libcloog-ppl0 for debian
+	
+	For certain gcc/boost combinations, build would fail in ubuntu with a
+	"sorry, unimplemented: Graphite loop optimizations can only be used if
+	the libcloog-ppl0 package is installed" message.
+	
+	BuildRequire on libcloog-ppl0 in order to solve this.
+
+2013-04-04  Ignacio Nin  <ignacio.nin@percona.com>
+
+	Update RPM version to 0.6
+
+2013-04-04  Stewart Smith  <stewart@flamingspork.com>
+
+	merge 0.6 release notes
+
+2013-06-07  jenkins@jenkins.percona.com
+
+	Merge lp:~stewart/percona-playback/copyright
+
+2013-06-07  Stewart Smith  <stewart@flamingspork.com>
+
+	fix up a couple more (auto-generated) (C) notices
+
+2013-06-07  Stewart Smith  <stewart@flamingspork.com>
+
+	fix up some left over GPLv3 notices which should have been switched to GPLv2
+
+2013-06-07  Stewart Smith  <stewart@flamingspork.com>
+
+	update (C) years and to proper Percona Ireland Ltd. company name
+
+2013-04-04  jenkins@jenkins.percona.com
+
+	Merge lp:~hrvojem/percona-playback/rn-0.6
+
+2013-03-27  Hrvoje Matijakovic  <hrvoje.matijakovic@percona.com>
+
+	- release notes for Percona Playback 0.6
+
+2013-03-14  Stewart Smith  <stewart@flamingspork.com>
+
+	bump version number to 0.6
+
+2012-12-10  jenkins@jenkins.percona.com
+
+	Merge lp:~hrvojem/percona-playback/rn-0.5
+
+2012-11-28  Hrvoje Matijakovic  <hrvoje.matijakovic@percona.com>
+
+	- install instructions and supported platforms
+	- percona-theme update
+	- 0.5 release notes
+	- tcpdump example extended
+
+2012-12-07  jenkins@jenkins.percona.com
+
+	Merge lp:~stewart/percona-playback/merge-connections-pool
+
+2012-12-07  Stewart Smith  <stewart@flamingspork.com>
+
+	merge  lp:~vlad-lesin/percona-playback/connections_pool - resolving simple conflict in percona_playback/percona_playback.cc
+
+2012-11-24  Vlad Lesin  <vladislav.lesin@percona.com>
+
+	Allow multi-statement queries.
+
+2012-11-23  Vlad Lesin  <vladislav.lesin@percona.com>
+
+	Convert multiline query to single line to avoid syntax errors from server.
+
+2012-11-23  Vlad Lesin  <vladislav.lesin@percona.com>
+
+	Don't push empty query log queries for execution
+
+2012-11-23  Vlad Lesin  <vladislav.lesin@percona.com>
+
+	Thread-safety fixes for mysql client plugin.
+
+2012-11-20  Vlad Lesin  <vladislav.lesin@percona.com>
+
+	Initialize session init query with the value from cmd line options.
+
+2012-11-20  Vlad Lesin  <vladislav.lesin@percona.com>
+
+	Send init session query on reconnect
+
+2012-11-19  Vlad Lesin  <vladislav.lesin@percona.com>
+
+	merged with trunk
+
+2012-11-19  Vlad Lesin  <vladislav.lesin@percona.com>
+
+	Fixes for bug #1070824 and bug #1080654
+
+2012-11-19  Vlad Lesin  <vladislav.lesin@percona.com>
+
+	Bug #1080648 fix.
+
+2012-11-19  Vlad Lesin  <vladislav.lesin@percona.com>
+
+	Destroy query entry just after its execution.
+
+2012-11-19  Vlad Lesin  <vladislav.lesin@percona.com>
+
+	Threads pool dispatcher plugin + test
+
+2012-11-17  Vlad Lesin  <vladislav.lesin@percona.com>
+
+	Remove connection state from dispatcher plugin.
+
+2012-11-15  Vlad Lesin  <vladislav.lesin@percona.com>
+
+	Use pointer to query enrties in thread class instead of instance.
+
+2012-11-30  jenkins@jenkins.percona.com
+
+	Merge lp:~stewart/percona-playback/build-dep-readme
+
+2012-11-30  Stewart Smith  <stewart@flamingspork.com>
+
+	update README with current build dependencies for different parts of Percona Playback
+
+2012-11-30  Stewart Smith  <stewart@flamingspork.com>
+
+	correct some (C) Copyright notices (which came from autogenerated foo)
+
+2012-11-29  jenkins@jenkins.percona.com
+
+	Merge lp:~percona-core/percona-playback/release-0.5
+
+2012-11-19  Ignacio Nin  <ignacio.nin@percona.com>
+
+	Update version to 0.5 in RPM, remove an obsolete file.
+
+2012-11-28  jenkins@jenkins.percona.com
+
+	Merge lp:~stewart/percona-playback/dispatcher-plugin
+
+2012-11-15  Vlad Lesin  <vladislav.lesin@percona.com>
+
+	Move dispatcher to plugin.
+
+2012-11-16  Stewart Smith  <stewart@flamingspork.com>
+
+	add some 0.5 release notes
+
+2012-11-15  Stewart Smith  <stewart@flamingspork.com>
+
+	merge --session-init-query work from Vlad
+
+2012-11-14  Vlad Lesin  <vladislav.lesin@percona.com>
+
+	--session-init-query option is added. It allows to execute some query just
+	after connection is established. This can be used for example to init some
+	session variables.
+
+2012-11-15  Stewart Smith  <stewart@flamingspork.com>
+
+	merge --query-log-stdin work by Vlad. Let query log come from stdin instead of file on disk
+
+2012-11-09  Vlad Lesin  <vladislav.lesin@percona.com>
+
+	The new option --query-log-stdin is added in query_log plugin to read
+	query log from stdin.
+
+2012-11-15  Stewart Smith  <stewart@flamingspork.com>
+
+	bump version number to 0.5
+
+2012-10-04  Stewart Smith  <stewart@flamingspork.com>
+
+	merge lefred's reports plugins
+
+2012-10-03  Frederic Descamps  <lefred@percona.com>
+
+	fix a bug for reporting
+
+2012-10-03  Frederic Descamps  <lefred@percona.com>
+
+	Add two new experimental reports.
+	
+	error_report: displays all queries that are slower 
+	full_report: displays some statistics related to the amount of statement types
+
+2012-09-17  Stewart Smith  <stewart@flamingspork.com>
+
+	fix 'multi-lines queries don't work' bug for query_log. Basically, \n can make it into the query part of the query log. This patch alters and cleans up slow query log parsing, likely making it a bit more efficient at the same time.
+
+2012-09-17  Stewart Smith  <stewart@flamingspork.com>
+
+	merge 0.4 release branch
+
+2012-09-14  Ignacio Nin  <ignacio.nin@percona.com>
+
+	Remove debian dependencies for dpkg
+	
+	Allow shlibs:Depends to specify the versions.
+
+2012-09-14  Ignacio Nin  <ignacio.nin@percona.com>
+
+	Update the project URL
+
+2012-09-14  Ignacio Nin  <ignacio.nin@percona.com>
+
+	Fix debian dependencies to the fixed library versions
+
+2012-09-14  Ignacio Nin  <ignacio.nin@percona.com>
+
+	Add mysql to build dependencies for RPM
+	
+	Add mysql as an explicit dependecy for RPM. In CentOS 6, mysql is a
+	dependency for mysql-devel so it got installed automatically, however in
+	CentOS 5 it's not.
+
+2012-09-13  Ignacio Nin  <ignacio.nin@percona.com>
+
+	Fix pandora so it CFLAGS correctly gets LIBDRIZZLE flags.
+	
+	There was an incorrect assignment to CFLAGS -- a right-side string was
+	not using quotes -- so CFLAGS was being malformed.
+
+2012-09-06  Stewart Smith  <stewart@flamingspork.com>
+
+	merge fix for Bug #1034527: raw tcpdump format meaning is absent in documentation. Also fix up incorrectly added docs files to bzr. the list.rst is generated automatically
+
+2012-08-24  Hrvoje Matijakovic  <hrvoje.matijakovic@percona.com>
+
+	* fixed bug 1034527
+	* added missing docs files to BZR
+	* updated .bzrignore to exclude build files
+
+2012-08-15  Stewart Smith  <stewart@flamingspork.com>
+
+	add release notes for 0.4
+
+2012-08-15  Stewart Smith  <stewart@flamingspork.com>
+
+	merge translations
+
+2012-08-10  Launchpad Translations on behalf of percona-core
+
+	Launchpad automatic translations update.
+
+2012-08-09  Launchpad Translations on behalf of percona-core
+
+	Launchpad automatic translations update.
+
+2012-07-11  Launchpad Translations on behalf of percona-core
+
+	Launchpad automatic translations update.
+
+2012-07-10  Launchpad Translations on behalf of percona-core
+
+	Launchpad automatic translations update.
+
+2012-07-06  Launchpad Translations on behalf of percona-core
+
+	Launchpad automatic translations update.
+
+2012-08-14  Stewart Smith  <stewart@flamingspork.com>
+
+	merge packaging
+
+2012-07-20  Ignacio Nin  <ignacio.nin@percona.com>
+
+	Group: directive to the .spec file, boost 1.41 requirement
+	
+	Old versions of rpmbuild(1) require a Group: directive to be included
+	in the main definition of the file. Add an Applications/Database group
+	directive.
+	
+	rhel5 provides boost 1.41, required by Percona Playback, in the
+	boost141-* packages, instead of boost-*. Add a switch to select the
+	right requirements for building and running
+	
+	rhel5 also needs a BuildRoot declaration in order to be able to use the
+	RPM_BUILD_ROOT internal variable later.
+
+2012-07-20  Ignacio Nin  <ignacio.nin@percona.com>
+
+	Include a debian/ subdir in order to generate percona-playback dpkgs
+
+2012-07-20  Ignacio Nin  <ignacio.nin@percona.com>
+
+	Include a .spec file in order to generate percona-playback RPMs
+
+2012-08-09  Stewart Smith  <stewart@flamingspork.com>
+
+	add to --help for tcpdump plugin that dump should be from 'tcpdump -w file'
+
+2012-07-23  Stewart Smith  <stewart@flamingspork.com>
+
+	initial libdrizzle DB client plugin
+
+2012-07-10  Stewart Smith  <stewart@flamingspork.com>
+
+	increase depth shown in user manual (so we can see all plugins)
+
+2012-07-10  Stewart Smith  <stewart@flamingspork.com>
+
+	move docs from docs/source/ to docs/ - this is what pandora-plugin expects, so we can use pandora-plugin automatic plugin listing now, which we do.
+
+2012-07-10  Stewart Smith  <stewart@flamingspork.com>
+
+	update bzrignore for docs fixes
+
+2012-07-10  Stewart Smith  <stewart@flamingspork.com>
+
+	doxygen generation fixup
+
+2012-07-10  Stewart Smith  <stewart@flamingspork.com>
+
+	rename doc to docs to be consistent with what pandora-plugin expects
+
+2012-07-10  Stewart Smith  <stewart@flamingspork.com>
+
+	docs fixups incl make dist and removal of .moved files
+
+2012-07-10  Stewart Smith  <stewart@flamingspork.com>
+
+	add 0.2 and 0.3 release notes files
+
+2012-07-10  Stewart Smith  <stewart@flamingspork.com>
+
+	merge doc updates
+
+2012-07-04  Hrvoje Matijakovic  <hrvoje.matijakovic@percona.com>
+
+	* documenting BP(https://blueprints.launchpad.net/percona-playback/+spec/initial-features-set), release notes, reference list
+	* linking the variables, fixing theme
+	* adding the new offline html build option for the docs
+
+2012-07-10  Stewart Smith  <stewart@flamingspork.com>
+
+	merge tcpdump accurate mode fix
+
+2012-07-09  Vlad Lesin  <vladislav.lesin@percona.com>
+
+	Bug #1021577 fix. The main error was in wrong calculation of sleep
+	time in result packet. Sleep time was calculated as difference between
+	query execution time obtained from tcpdump file and real query execution time.
+	But the time interval between end of "query" packet and start of "result" packet
+	was not taken into account. This commit fix it.
+
+2012-07-09  Stewart Smith  <stewart@flamingspork.com>
+
+	merge CentOS 5 build fixes
+
+2012-07-06  Vlad Lesin  <vladislav.lesin@percona.com>
+
+	Fix compiling errors on CentOS 5
+
+2012-07-05  Stewart Smith  <stewart@flamingspork.com>
+
+	update translations
+
+2012-07-05  Launchpad Translations on behalf of percona-core
+
+	Launchpad automatic translations update.
+
+2012-07-04  Launchpad Translations on behalf of percona-core
+
+	Launchpad automatic translations update.
+
+2012-07-05  Stewart Smith  <stewart@flamingspork.com>
+
+	bump version number to 0.4 after 0.3 release. Fix bugs URL
+
+2012-07-05  Stewart Smith  <stewart@flamingspork.com>
+
+	disable --loop and --query-log-read-count as they weren't fully implemented
+
+2012-07-05  Stewart Smith  <stewart@flamingspork.com>
+
+	update release notes for 0.1 through 0.3
+
+2012-07-05  Stewart Smith  <stewart@flamingspork.com>
+
+	clarify license in tcpdump sniff_headers.h after having conferred with Daniel Nichter (the author)
+
+2012-07-04  Stewart Smith  <stewart@flamingspork.com>
+
+	we need pkg-config to build
+
+2012-07-04  Stewart Smith  <stewart@flamingspork.com>
+
+	alter bzrignore to ignore new binary name: percona-playback
+
+2012-07-04  Stewart Smith  <stewart@flamingspork.com>
+
+	use <> instead of "" for includes of tbb and boost. This makes cppcheck think that they're proper system headers and looks in the right place for them
+
+2012-07-04  Stewart Smith  <stewart@flamingspork.com>
+
+	style/perf: prefer prefix ++ for complex types in query_log.cc
+
+2012-07-04  Stewart Smith  <stewart@flamingspork.com>
+
+	init read_count in QueryLogPlugin constructor
+
+2012-07-04  Stewart Smith  <stewart@flamingspork.com>
+
+	style/perf: prefer prefix ++ for complex types percona_playback.cc
+
+2012-07-04  Stewart Smith  <stewart@flamingspork.com>
+
+	style/perf: prefer prefix ++ for complex types
+
+2012-07-04  Stewart Smith  <stewart@flamingspork.com>
+
+	add constructor for QueryLogEntry
+
+2012-07-04  Stewart Smith  <stewart@flamingspork.com>
+
+	gettextify the tcpdump plugin
+
+2012-07-04  Stewart Smith  <stewart@flamingspork.com>
+
+	gettext-ify query_log.cc
+
+2012-07-04  Stewart Smith  <stewart@flamingspork.com>
+
+	gettext-ify simple_report
+
+2012-07-04  Stewart Smith  <stewart@flamingspork.com>
+
+	finish gettext for mysql_client plugin
+
+2012-07-04  Stewart Smith  <stewart@flamingspork.com>
+
+	gettext for plugin loader (plugin.cc)
+
+2012-07-04  Stewart Smith  <stewart@flamingspork.com>
+
+	make all percona_playback.cc strings gettextified
+
+2012-07-04  Stewart Smith  <stewart@flamingspork.com>
+
+	make --version output a little nicer, don't include unneeded things
+
+2012-07-04  Stewart Smith  <stewart@flamingspork.com>
+
+	bump libpercona_playback version number as we have changed things in this 0.3 dev cycle
+
+2012-07-04  Stewart Smith  <stewart@flamingspork.com>
+
+	change package name to percona-playback in configure.ac instead of with underscore. This is a bit more consistent with how we name the product
+
+2012-07-04  Stewart Smith  <stewart@flamingspork.com>
+
+	make binary produced by percona-playback instead of percona_playback to be consistent with how everybody else does it
+
+2012-07-03  Stewart Smith  <stewart@flamingspork.com>
+
+	document libdrizzle requirement
+
+2012-07-03  Stewart Smith  <stewart@flamingspork.com>
+
+	AUTHORS file update
+
+2012-07-03  Stewart Smith  <stewart@flamingspork.com>
+
+	merge tcpdump plugin. include a few fixes for libmysqlclient and libdrizzle detection, along with compiler warning fixes et al
+
+2012-07-02  Vlad Lesin  <vladislav.lesin@percona.com>
+
+	Avoid compilation errors in 'set drizzle result options' code
+
+2012-07-02  Vlad Lesin  <vladislav.lesin@percona.com>
+
+	Use standard libdrizzle-1.0 instead of modified
+
+2012-07-02  Vlad Lesin  <vladislav.lesin@percona.com>
+
+	Rename pandora_have_libdrizzle.m4 to pandora_have_libdrizzle-1.0.m4 as it finds libdrizzle-1.0 library
+
+2012-07-02  Vlad Lesin  <vladislav.lesin@percona.com>
+
+	Merge with 91..94 revisions of trunk(use autoreconf, add gettext support, add po to Makefile subdirs)
+
+2012-06-20  Vlad Lesin  <vlad_lesin@mail.ru>
+
+	License header is added to dispatcher source.
+
+2012-06-20  Vlad Lesin  <vlad_lesin@mail.ru>
+
+	One more memory leak fix. See https://bugs.launchpad.net/drizzle/+bug/1015576.
+
+2012-06-20  Vlad Lesin  <vlad_lesin@mail.ru>
+
+	Don't use all caps in labels.
+
+2012-06-20  Vlad Lesin  <vlad_lesin@mail.ru>
+
+	Fix for memory leak in tcpdump plugin.
+
+2012-06-20  Vlad Lesin  <vlad_lesin@mail.ru>
+
+	Free drizzle result in ConnectionState destructor.
+
+2012-06-20  Vlad Lesin  <vlad_lesin@mail.ru>
+
+	Add pandora_have_libmysqlclient.m4 pandora_have_libpcap.m4 to the project because it shouldn't depend on pandora-build being installed.
+
+2012-06-19  Vlad Lesin  <vlad_lesin@mail.ru>
+
+	bzr ignore autogenerated m4, ctags and some tests binaries.
+
+2012-06-19  Vlad Lesin  <vlad_lesin@mail.ru>
+
+	1) Tcpdump plugin functionality is added.
+	2) Tests for tcpdump plugin accuracy mode, multiple connections,
+	connections without handshake, fragmented packets are added.
+
+2012-07-03  Stewart Smith  <stewart@flamingspork.com>
+
+	merge centos6 build fixes
+
+2012-07-02  Vlad Lesin  <vladislav.lesin@percona.com>
+
+	Rename pandora_have_libdrizzle.m4 to pandora_have_libdrizzle-1.0.m4 as it finds libdrizzle-1.0 library
+
+2012-07-02  Vlad Lesin  <vladislav.lesin@percona.com>
+
+	pandora_have_libdrizzle.m4 uses pkg-config if library is not found with AC_LIB_HAVE_LINKFLAGS
+
+2012-07-02  Vlad Lesin  <vladislav.lesin@percona.com>
+
+	Fix comparision between signed and unsigned integers
+
+2012-07-03  Stewart Smith  <stewart@flamingspork.com>
+
+	don't include concurrent_unordered_map in simple_report if we're not going to use it on old CentOS
+
+2012-07-03  Stewart Smith  <stewart@flamingspork.com>
+
+	attempt to work around old TBB lack of tbb::concurrent_unordered_map by using mutex and stl
+
+2012-07-03  Stewart Smith  <stewart@flamingspork.com>
+
+	a few methods in query_entry.h can be const
+
+2012-07-03  Stewart Smith  <stewart@flamingspork.com>
+
+	can pass by reference in BOOST_FOREACH
+
+2012-07-03  Stewart Smith  <stewart@flamingspork.com>
+
+	some type conversions in simple_report that were causing casting errors/warnings on 32bit
+
+2012-07-03  Stewart Smith  <stewart@flamingspork.com>
+
+	fix sign warning in query_log
+
+2012-07-03  Stewart Smith  <stewart@flamingspork.com>
+
+	result of getline() is a ssize_t rather than size_t. This fixes compiler warning
+
+2012-07-03  Stewart Smith  <stewart@flamingspork.com>
+
+	fix up build dependencies in docs
+
+2012-07-03  Stewart Smith  <stewart@flamingspork.com>
+
+	fix wildcard for rst files in doc/include.am
+
+2012-07-03  Stewart Smith  <stewart@flamingspork.com>
+
+	add missing po/insert-header.sin file
+
+2012-07-03  Stewart Smith  <stewart@flamingspork.com>
+
+	add make clean-local target to clean out built docs on global make clean
+
+2012-07-03  Stewart Smith  <stewart@flamingspork.com>
+
+	move docs building into main makefile (via include) and don't search for percona-theme as it may not be present.
+
+2012-07-03  Stewart Smith  <stewart@flamingspork.com>
+
+	move doxygen docs under doxygen/ rather than docs/ to avoid confusion with user docs
+
+2012-07-03  Stewart Smith  <stewart@flamingspork.com>
+
+	merge initial docs
+
+2012-07-02  Hrvoje Matijakovic  <hrvoje.matijakovic@percona.com>
+
+	* initial sphinx doc
+
+2012-06-24  Stewart Smith  <stewart@flamingspork.com>
+
+	enable a whole bunch of neat compiler warnings
+
+2012-06-22  Stewart Smith  <stewart@flamingspork.com>
+
+	merge query log bugfix
+
+2012-06-19  Vlad Lesin  <vlad_lesin@mail.ru>
+
+	Fix errors in parsing query_log plugin parameters.
+
+2012-06-22  Stewart Smith  <stewart@flamingspork.com>
+
+	null-merge removal of dbthread join (as I believe join is better on shutdown than sleep loop)
+
+2012-06-19  Vlad Lesin  <vlad_lesin@mail.ru>
+
+	1) Manage db threads inside of dispatcher;
+	2) Unblocked finish thread function; 
+
+2012-06-22  Stewart Smith  <stewart@flamingspork.com>
+
+	merge dummy tcpdump plugin
+
+2012-06-19  Vlad Lesin  <vlad_lesin@mail.ru>
+
+	Dummy tcpdump plugin
+
+2012-06-22  Stewart Smith  <stewart@flamingspork.com>
+
+	Merge Vlad's addition of libpcap detection. However, do not merge the libmysql changes as these appear broken
+
+2012-06-22  Stewart Smith  <stewart@flamingspork.com>
+
+	List both built in and dynamic modules in configure output
+
+2012-06-22  Stewart Smith  <stewart@flamingspork.com>
+
+	const FTW!
+
+2012-06-19  Vlad Lesin  <vlad_lesin@mail.ru>
+
+	Return constant reference to boost::posix_time::time_duration in QueryResult::getDuration() instead of returning it's value.
+
+2012-06-22  Stewart Smith  <stewart@flamingspork.com>
+
+	merge Vlad's moving of query dispatching to own class rather than in query_log plugin
+
+2012-06-19  Vlad Lesin  <vlad_lesin@mail.ru>
+
+	Move queries dispatching code from query_log plugin to common dispatcher code.
+
+2012-06-22  Stewart Smith  <stewart@flamingspork.com>
+
+	merge DBThread refactoring from Vlad
+
+2012-06-19  Vlad Lesin  <vlad_lesin@mail.ru>
+
+	Use shared pointer to db thread state inside of db thread object instead of raw pointer
+
+2012-06-19  Vlad Lesin  <vlad_lesin@mail.ru>
+
+	Don't use pointer to boost::thread object inside of DBThread. Use the object itself.
+
+2012-06-18  Vlad Lesin  <vlad_lesin@mail.ru>
+
+	Add the external state to db thread. This allows plugins to store
+	their own information about database thread inside of thread object.
+
+2012-06-22  Stewart Smith  <stewart@flamingspork.com>
+
+	merge Vlad's base class for DB thread query queue entries. I also fix make distcheck for added header files
+
+2012-06-18  Vlad Lesin  <vlad_lesin@mail.ru>
+
+	Base class for db thread queries queue entries. Store shared pointer
+	to query entry instead of storing the object itself in query queue.
+
+2012-06-22  Stewart Smith  <stewart@flamingspork.com>
+
+	merge error for providing options for a not enabled plugin. This is a temporary fix as instead we should rely on not loading the plugin instead (this is blocked on some libtool foo)
+
+2012-06-18  Vlad Lesin  <vlad_lesin@mail.ru>
+
+	If plugin is not active and there are it's options in command line consider
+	this situation as error.
+
+2012-06-21  Stewart Smith  <stewart@flamingspork.com>
+
+	add po to Makefile subdirs
+
+2012-06-21  Stewart Smith  <stewart@flamingspork.com>
+
+	add gettext support. Only include a couple of basic strings for testing
+
+2012-06-21  Stewart Smith  <stewart@flamingspork.com>
+
+	use autoreconf instead of manually calling a bunch of autotools foo.
+
+2012-06-21  Stewart Smith  <stewart@flamingspork.com>
+
+	add support for dynamic plugins
+
+2012-06-21  Stewart Smith  <stewart@flamingspork.com>
+
+	fix module list printout
+
+2012-06-21  Stewart Smith  <stewart@flamingspork.com>
+
+	rework input plugin selection to use std::map .find() instead of [] as [] will insert value if not exists (which is not what we want)
+
+2012-06-21  Stewart Smith  <stewart@flamingspork.com>
+
+	finish rework to be 'using namespace percona_playback' in percona_playback.cc - this makes things easier to read
+
+2012-06-21  Stewart Smith  <stewart@flamingspork.com>
+
+	merge Vlad's improved InputPlugin architecture, moving query log plugin to be independent
+
+2012-06-15  Vlad Lesin  <vlad_lesin@mail.ru>
+
+	1) Replace query_log plugin related command options from common code to
+	the plugin.
+	
+	2) Remove input file name parameter from
+	percona_playback::InputPlugin::run(...) because is is a plugin-specific
+	command option.
+	
+	3) Fix tests to work with renamed command options.
+	
+	4) Query log plugin is renamed from "query_log" to "query-log" to have
+	sameness with mysql db client plugin.
+	
+	5) Some fields are removed from percona_playback_st as they are not longer
+	used.
+
+2012-06-21  Stewart Smith  <stewart@flamingspork.com>
+
+	rework dbplugin detection to use std::map .find() instead of [] as [] inserts an item if not found (not what we want)
+
+2012-06-21  Stewart Smith  <stewart@flamingspork.com>
+
+	modify MySQL plugin build conditional to work if MYSQL_CONFIG exists
+
+2012-06-21  Stewart Smith  <stewart@flamingspork.com>
+
+	merge addition of InputPlugin plugin type
+
+2012-06-15  Vlad Lesin  <vlad_lesin@mail.ru>
+
+	1) The InputPlugin type is added. This type of plugin
+	is indended for parsing input data of various formats.
+	
+	2) query_log plugin is one of InputPlugin type plugins now.
+
+2012-06-21  Stewart Smith  <stewart@flamingspork.com>
+
+	merge Vlad's fix for crash around dbclient plugin being NULL at the wrong place
+
+2012-06-15  Vlad Lesin  <vlad_lesin@mail.ru>
+
+	The error in code which checks the "db-plugin" command
+	option is fixed. If the project is built without libmysqlclient
+	db plugin the code the first tried to get "null" db plugin 
+	with wrong name from PluginRegistry singletone container,
+	the second it didn't assing the global g_dbclient_plugin pointer
+	to any value. As a result the code crashed trying to derefference
+	not valid pointer.
+
+2012-06-21  Stewart Smith  <stewart@flamingspork.com>
+
+	fix tbb::atomic<> conversion to uint64_t. (merge from Vlad, but instead use uint64_t constructor rather than static cast)
+
+2012-06-15  Vlad Lesin  <vlad_lesin@mail.ru>
+
+	Cast nr_quicker_queries and nr_slower_queries in 
+	simple_report plugin from tbb::atomic<uint64_t>
+	to uint64_t before printing them out. It helped us
+	to avoid segmentation fault during reporting execution
+	results.
+
+2012-06-20  Stewart Smith  <stewart@flamingspork.com>
+
+	merge Vlad's small build fixes (I reverted the removal of m4/pandora_have_libmysqlclient.m4 though
+
+2012-06-15  Vlad Lesin  <vlad_lesin@mail.ru>
+
+	Make build process more user-friendly:
+	
+	1) The autogenerated files
+	m4/libtool.m4
+	m4/ltoptions.m4
+	m4/ltversion.m4
+	m4/lt~obsolete.m4
+	are removed from repository.
+	
+	2) The m4/pandora_have_libmysqlclient.m4 script
+	is removed from repository because it supposes to be
+	in pandora-build project.
+	
+	3) The mysql client library inclusion is removed from
+	query_log plugin source code because one shouldn't
+	depend on database layer.
+	
+	4) The mysql client library inclusion is added in
+	mysql_client plugin because it doesn't build without that
+	header.
+	
+	5) The mysql client library header files path is added
+	to CPPFLAGS if mysql_client plugin because it didn't
+	build without additional dancing.
+
+2012-04-11  Stewart Smith  <stewart@flamingspork.com>
+
+	bump version number after 0.2 release
+
+2012-04-09  Stewart Smith  <stewart@flamingspork.com>
+
+	fix broken make dist due to not including percona_playback/test/preserve_query_time.log in EXTRA_DIST
+
+2012-04-08  Stewart Smith  <stewart@flamingspork.com>
+
+	implement --preserve-query-time to ensure that each query takes at least Query_time (from slow query log) to execute by injecting a usleep() call afterwards if needed.
+
+2012-04-08  Stewart Smith  <stewart@flamingspork.com>
+
+	start parsing Query_Time from slow query log, add basic metrics to simple_report to report actual/expected time and count of how many faster/slower
+
+2012-04-09  Stewart Smith  <stewart@flamingspork.com>
+
+	fix bug in query_log that was having us examine end of buffer rather than end of string.
+
+2012-04-09  Stewart Smith  <stewart@flamingspork.com>
+
+	remove printout from query_log.cc that is now superceeded by simple_report
+
+2012-04-09  Stewart Smith  <stewart@flamingspork.com>
+
+	remove unneeded comments in query_log.cc
+
+2012-04-09  Stewart Smith  <stewart@flamingspork.com>
+
+	query_log/query_log.cc doesn't need to include mysql.h
+
+2012-04-07  Stewart Smith  <stewart@flamingspork.com>
+
+	bump version number to 0.2 after 0.1 release
+
+2012-04-07  Stewart Smith  <stewart@flamingspork.com>
+
+	move COPYING back to LICENSE as this version of pandora-build requires that
+
+2012-04-07  Stewart Smith  <stewart@flamingspork.com>
+
+	replace std:cerr usage with fprintf in simple_report to ensure thread safety
+
+2012-04-07  Stewart Smith  <stewart@flamingspork.com>
+
+	dump the query that has an error to stderr in simple_report
+
+2012-04-07  Stewart Smith  <stewart@flamingspork.com>
+
+	update test cases
+
+2012-04-07  Stewart Smith  <stewart@flamingspork.com>
+
+	update README
+
+2012-04-07  Stewart Smith  <stewart@flamingspork.com>
+
+	fix 'started with:' first line of slow query log parsing
+
+2012-04-05  Stewart Smith  <stewart@flamingspork.com>
+
+	fix detection of Quit command
+
+2012-04-05  Stewart Smith  <stewart@flamingspork.com>
+
+	improve warning for row result differing in simple_report
+
+2012-04-05  Stewart Smith  <stewart@flamingspork.com>
+
+	fix chunk parsing of the slow query log
+
+2012-04-05  Stewart Smith  <stewart@flamingspork.com>
+
+	fix sysbench-slow test with shorter test
+
+2012-04-05  Stewart Smith  <stewart@flamingspork.com>
+
+	add duration, warning count to statistics
+
+2012-04-05  Stewart Smith  <stewart@flamingspork.com>
+
+	add per-connection query counts option to simple_report and show average queries per connection
+
+2012-04-05  Stewart Smith  <stewart@flamingspork.com>
+
+	update (C) to include 2012
+
+2012-04-04  Stewart Smith  <stewart@flamingspork.com>
+
+	add ability for reporting plugins and introduce simple_report plugin
+
+2012-04-04  Stewart Smith  <stewart@flamingspork.com>
+
+	add option to query_log to skip (or not) the SET TIMESTAMP queries
+
+2012-04-04  Stewart Smith  <stewart@flamingspork.com>
+
+	remove debug printouts of start/end query thread
+
+2012-04-03  Stewart Smith  <stewart@flamingspork.com>
+
+	attempt to fix mysql_config detection for CentOS and others where libmysqlclient isn't in /usr/lib
+
+2012-04-03  Stewart Smith  <stewart@flamingspork.com>
+
+	attempt to work around segfault when mysqlclient plugin not built
+
+2012-04-03  Stewart Smith  <stewart@flamingspork.com>
+
+	don't use version-from-vc
+
+2012-04-03  Stewart Smith  <stewart@flamingspork.com>
+
+	fix and greatly simplify parser
+
+2012-04-03  Stewart Smith  <stewart@flamingspork.com>
+
+	update quickly file
+
+2012-04-03  Stewart Smith  <stewart@flamingspork.com>
+
+	re-fix pandora have_libmysqlclient
+
+2012-04-03  Stewart Smith  <stewart@flamingspork.com>
+
+	re-fix config/pandora-plugin for correct symbol names
+
+2012-04-03  Stewart Smith  <stewart@flamingspork.com>
+
+	fix have_tbb error msg
+
+2012-04-03  Stewart Smith  <stewart@flamingspork.com>
+
+	update AUTHORS file to be correct, i.e. be (C) Percona Inc.
+
+2012-04-03  Stewart Smith  <stewart@flamingspork.com>
+
+	Updated pandora-build files to version 0.171
+
+2011-12-30  Stewart Smith  <stewart@flamingspork.com>
+
+	add a test using sysbench with up to 128 connections
+
+2011-12-30  Stewart Smith  <stewart@flamingspork.com>
+
+	Add test using slow query log from sqlbench-transactions
+
+2011-12-30  Stewart Smith  <stewart@flamingspork.com>
+
+	add test using crashme slow query log
+
+2011-12-30  Stewart Smith  <stewart@flamingspork.com>
+
+	add a bit of a README on logging things in the slow query log
+
+2011-12-30  Stewart Smith  <stewart@flamingspork.com>
+
+	add expected result to execute_query. This is the precursor to analysis plugins that will be able to analyze results of what we're running
+
+2011-12-29  Stewart Smith  <stewart@flamingspork.com>
+
+	make --slow-query-log-file a required option for now
+
+2011-12-29  Stewart Smith  <stewart@flamingspork.com>
+
+	add --queue-depth command line option to indicate how much from recorded workload we can deviate
+
+2011-12-29  Stewart Smith  <stewart@flamingspork.com>
+
+	fix passing of mysql options to mysql db thread
+
+2011-12-29  Stewart Smith  <stewart@flamingspork.com>
+
+	move specifying of query_log options to query_log plugin itself.
+
+2011-12-29  Stewart Smith  <stewart@flamingspork.com>
+
+	add the ability for plugins to have command line options. Make the mysql_client plugin use this, and be able to specify options
+
+2011-12-29  Stewart Smith  <stewart@flamingspork.com>
+
+	add basic infrastructure for collecting query execution stats
+
+2011-11-22  Stewart Smith  <stewart@flamingspork.com>
+
+	make basic test check that we're getting the same number of queries and log entries
+
+2011-11-22  Stewart Smith  <stewart@flamingspork.com>
+
+	factor out plugin loading to sep function in plugin.cc
+
+2011-11-22  Stewart Smith  <stewart@flamingspork.com>
+
+	make mysql_client plugin name itself libmysqlclient to resemble what shared library it uses to make DB connection
+
+2011-11-22  Stewart Smith  <stewart@flamingspork.com>
+
+	fix up basic test for make distcheck: needed to be able to find our sample slow query log
+
+2011-11-22  Stewart Smith  <stewart@flamingspork.com>
+
+	add basic test that runs a Playback run with the NULL db plugin and a sample slow query log with only 1 thread
+
+2011-11-22  Stewart Smith  <stewart@flamingspork.com>
+
+	initial plugin loading, adding NULL database plugin
+
+2011-11-17  Stewart Smith  <stewart@flamingspork.com>
+
+	add tokenize.h to Makefile.am
+
+2011-11-17  Stewart Smith  <stewart@flamingspork.com>
+
+	add skeleton of loading builtin plugins
+
+2011-11-17  Stewart Smith  <stewart@flamingspork.com>
+
+	add bzrignore
+
+2011-11-17  Stewart Smith  <stewart@flamingspork.com>
+
+	add plugin.cc and plugin.h source files to Makefile
+
+2011-11-17  Stewart Smith  <stewart@flamingspork.com>
+
+	initial plugin info data structure
+
+2011-11-17  Stewart Smith  <stewart@flamingspork.com>
+
+	make pandora-plugin generate correct builtin symbol list
+
+2011-11-17  Stewart Smith  <stewart@flamingspork.com>
+
+	add missing license to mysql_client
+
+2011-11-17  Stewart Smith  <stewart@flamingspork.com>
+
+	print bug report URL for --help
+
+2011-11-17  Stewart Smith  <stewart@flamingspork.com>
+
+	fix up version.h foo for make dist
+
+2011-11-17  Stewart Smith  <stewart@flamingspork.com>
+
+	add version.h.in - get part of version from BZR tree
+
+2011-11-17  Stewart Smith  <stewart@flamingspork.com>
+
+	remove extraneous PERCONA_PLAYBACK_API
+
+2011-11-17  Stewart Smith  <stewart@flamingspork.com>
+
+	split (most) of the MySQL specific code out into a separate plugin
+
+2011-11-17  Stewart Smith  <stewart@flamingspork.com>
+
+	a bunch of bug fixes and simplification. Also fix shutdown problem, now we wait until queries have executed
+
+2011-11-16  Stewart Smith  <stewart@flamingspork.com>
+
+	fix up Doxygen generated interals docs
+
+2011-11-16  Stewart Smith  <stewart@flamingspork.com>
+
+	add a simple README
+
+2011-11-16  Stewart Smith  <stewart@flamingspork.com>
+
+	fix LICENSE information, add copy of GPL
+
+2011-11-16  Stewart Smith  <stewart@flamingspork.com>
+
+	fix make distcheck by making sure query_log plugin specifies it has a header file
+
+2011-11-16  Stewart Smith  <stewart@flamingspork.com>
+
+	fix make dist - wasn't including percona_playback/test/help.cc as make dist was looking for help.c instead
+
+2011-11-16  Stewart Smith  <stewart@flamingspork.com>
+
+	move test/basic to test/help as that is what it actually tests
+
+2011-11-16  Stewart Smith  <stewart@flamingspork.com>
+
+	fix segfault on no args given (display help instead)
+
+2011-11-16  Stewart Smith  <stewart@flamingspork.com>
+
+	fix segfault on --help
+
+2011-11-16  Stewart Smith  <stewart@flamingspork.com>
+
+	explicitly load query_log plugin by default
+
+2011-11-16  Stewart Smith  <stewart@flamingspork.com>
+
+	fix build for query_log plugin and linking it all together
+
+2011-11-16  Stewart Smith  <stewart@flamingspork.com>
+
+	initial near working version
+
+2011-11-16  Stewart Smith  <stewart@flamingspork.com>
+
+	modified plugin config to where to put installed libs
+
+2011-11-16  Stewart Smith  <stewart@flamingspork.com>
+
+	pandora m4 update
+
+2011-11-16  Stewart Smith  <stewart@flamingspork.com>
+
+	require MYSQL, Boost and don't use eff-C++ warninG
+
+2011-10-13  Stewart Smith  <stewart@flamingspork.com>
+
+	Initial project creation with Quickly!
+
